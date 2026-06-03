@@ -92,6 +92,7 @@ int main (int argc, char *argv[]) {
                 input_table = fopen(argv[a+1], "r");
                 if (!input_table) {
                     fprintf(stderr, "Infile err: No such file '%s' or failed to open it.\n", argv[a+1]);
+                    if (output_table) fclose(output_table);
                     return -1;
                 }
                 printf("Input file '%s' opened successfully.\n", argv[a+1]);
@@ -103,6 +104,7 @@ int main (int argc, char *argv[]) {
                 output_table = fopen(argv[a+1], "w");
                 if (!output_table) {
                     fprintf(stderr, "Outfile err: Failed to open / create file '%s'.\n", argv[a+1]);
+                    if (input_table) fclose(input_table);
                     return -1;
                 }
                 printf("Output file '%s' opened / created successfully.\n", argv[a+1]);
